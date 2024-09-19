@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Funny random number"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.225" />
+
+    <EditText
+        android:id="@+id/minInput"
+        android:layout_width="169dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Min"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/maxInput"
+        android:layout_width="169dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Max"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/minInput"
+        app:layout_constraintStart_toStartOf="@+id/minInput"
+        app:layout_constraintTop_toBottomOf="@+id/minInput" />
+
+    <Button
+        android:id="@+id/btnRandom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="132dp"
+        android:text="Random bullshit go"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/maxInput" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="83dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="120dp"
+        android:text="Your generated number:"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/btnRandom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maxInput" />
+
+    <TextView
+        android:id="@+id/yourRandom"
+        android:layout_width="72dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="40dp"
+        android:text="answer"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/btnRandom"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/maxInput"
+        app:layout_constraintVertical_bias="0.511" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
