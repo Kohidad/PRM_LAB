@@ -61,7 +61,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public boolean findAccount(String fileName, String username) {
+        //Get application path
         File path = this.getFilesDir();
+        //Get file needed to be read
         File readFile = new File(path, fileName);
         //Allocate memory based on file size.
         byte[] content = new byte[(int) readFile.length()];

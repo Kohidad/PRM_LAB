@@ -7,9 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
@@ -20,6 +24,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     private Button btnSignIn;
 
     private final String REQUIRE = "Required";
+    private final String USERBASE = "userbase.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,31 +41,66 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         btnSignIn.setOnClickListener(this);
     }
 
-    private boolean checkInput(){
-        if (TextUtils.isEmpty(user_username.getText().toString())){
+    public boolean loginAccount(String fileName, String username, String password) {
+        File path = this.getFilesDir();
+        File readFile = new File(path, fileName);
+        byte[] content = new byte[(int) readFile.length()];
+
+        try {
+            FileInputStream stream = new FileInputStream(readFile);
+            stream.read(content);
+            stream.close();
+
+            String fileContent = new String(content);
+
+            String userInfo = username + ":" + password;
+
+            if (!fileContent.contains(userInfo)) {
+                return false;
+            }
+        } catch (FileNotFoundException e) {
+            Toast.makeText(this, "File not found!", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return true;
+    }
+
+    private boolean checkInput() {
+        if (TextUtils.isEmpty(user_username.getText().toString())) {
             user_username.setError(REQUIRE);
             return false;
         }
 
-        if (TextUtils.isEmpty(user_password.getText().toString())){
+        if (TextUtils.isEmpty(user_password.getText().toString())) {
             user_password.setError(REQUIRE);
+            return false;
+        }
+
+        if (!loginAccount(USERBASE,user_username.getText().toString(),user_password.getText().toString())){
+            Toast.makeText(this, "Either username/password is wrong, else create account.", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         return true;
     }
 
-    private void signIn(){
-        if(!checkInput()){
+    private void signIn() {
+        if (!checkInput()) {
             return;
         }
 
+        //Intent assign the path of current class (SignInActivity) to MainActivity class if account exist.
         Intent intent = new Intent(this, MainActivity.class);
+        //Passing the username value to MainActivity
+        intent.putExtra("USERNAME",user_username.getText().toString());
         startActivity(intent);
         finish();
     }
 
-    private void signUpForm(){
+    private void signUpForm() {
         Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
         finish();
