@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Lab 3</string>
+    <string name="my_text">My text</string>
+    <string name="context">Context</string>
+</resources>
