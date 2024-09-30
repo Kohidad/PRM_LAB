@@ -1,6 +1,7 @@
 package com.example.lab3_1;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -35,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 myItemsList.add("Something");
+                // Next time implement the RecycleView (this one automatically update)
+                // We have this because adapter itself doesn't automatically update.
+                customerAdapter.notifyDataSetChanged();
             }
         });
 

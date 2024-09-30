@@ -15,7 +15,7 @@ public class MyCustomAdapter extends BaseAdapter {
     Context context;
     LayoutInflater inflater;
 
-    public MyCustomAdapter(Context context, ArrayList<String> myItems){
+    public MyCustomAdapter(Context context, ArrayList<String> myItems) {
         this.context = context;
         this.myItems = myItems;
         inflater = LayoutInflater.from(context);
