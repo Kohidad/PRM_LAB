@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -56,20 +57,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.i("ACTION", "A user clicked " + myItemsList.get(i));
-                createPopUpWindow();
+                createPopUpWindow(i);
             }
         });
 
     }
 
 
-    private void createPopUpWindow(){
+    private void createPopUpWindow(int position){
         // getSystemService(LAYOUT_INFLATER_SERVICE) is a method that retrieves a system-level service.
         // LAYOUT_INFLATER_SERVICE is a constant that represents the system's LayoutInflater service.
         LayoutInflater layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popUp = layoutInflater.inflate(R.layout.popwindow, null);
-        Button closeBtn = new Button(this);
+        EditText updateTitleInput;
+        Button closeBtn;
+        Button applyBtn;
+
         closeBtn = popUp.findViewById(R.id.closePopUpBtn);
+        applyBtn = popUp.findViewById(R.id.applyChangesBtn);
+        updateTitleInput = popUp.findViewById(R.id.updateIBoxPopUp);
+
+        // Pre-fill the EditText with the current item title
+        updateTitleInput.setText(myItemsList.get(position));
 
         int width = ViewGroup.LayoutParams.MATCH_PARENT;
         int height = ViewGroup.LayoutParams.MATCH_PARENT;
@@ -91,6 +100,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 popupWindow.dismiss();
+            }
+        });
+
+        // ApplyChanges popUp
+        applyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String newTitle = updateTitleInput.getText().toString();
+                if (!newTitle.isEmpty()){
+                    myItemsList.set(position, newTitle);
+                    customerAdapter.notifyDataSetChanged();
+                    popupWindow.dismiss();
+                }
             }
         });
     }
