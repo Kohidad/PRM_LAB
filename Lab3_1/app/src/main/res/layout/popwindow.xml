@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_200sdp"
+        android:layout_height="@dimen/_230sdp"
         android:layout_centerInParent="true"
         android:layout_margin="@dimen/_20sdp"
         android:background="@drawable/popupbg"
@@ -22,23 +22,22 @@
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:text="Change the title of the element"
-            android:textColor="@color/black"
-            android:textStyle="bold"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/updateIBoxPopUp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_80sdp"
-            android:layout_marginBottom="15dp"
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_5sdp"
-            android:paddingStart="@dimen/_5sdp"
-            android:paddingEnd="@dimen/_5sdp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/text_box_popup"
             android:hint="Something around here"
-            />
+            android:paddingStart="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_5sdp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,6 +68,16 @@
                 android:textSize="10sp"
                 android:textStyle="bold" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/deleteThisBtn"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/semi_round_button_delete_popup"
+            android:text="Delete this"
+            android:textSize="10sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

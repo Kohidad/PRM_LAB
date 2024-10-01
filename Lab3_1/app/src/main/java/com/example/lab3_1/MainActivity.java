@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -72,10 +73,12 @@ public class MainActivity extends AppCompatActivity {
         EditText updateTitleInput;
         Button closeBtn;
         Button applyBtn;
+        Button deleteBtn;
 
+        updateTitleInput = popUp.findViewById(R.id.updateIBoxPopUp);
         closeBtn = popUp.findViewById(R.id.closePopUpBtn);
         applyBtn = popUp.findViewById(R.id.applyChangesBtn);
-        updateTitleInput = popUp.findViewById(R.id.updateIBoxPopUp);
+        deleteBtn = popUp.findViewById(R.id.deleteThisBtn);
 
         // Pre-fill the EditText with the current item title
         updateTitleInput.setText(myItemsList.get(position));
@@ -112,6 +115,21 @@ public class MainActivity extends AppCompatActivity {
                     myItemsList.set(position, newTitle);
                     customerAdapter.notifyDataSetChanged();
                     popupWindow.dismiss();
+                }
+            }
+        });
+
+        // DeleteThis element
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!myItemsList.get(position).isEmpty()){
+                    myItemsList.remove(position);
+                    customerAdapter.notifyDataSetChanged();
+                    popupWindow.dismiss();
+                } else {
+                    Log.i("ERROR - MISSING ELEMENT", "Missing element at: " + myItemsList.get(position));
+                    Toast.makeText(MainActivity.this, "Something not right", Toast.LENGTH_SHORT).show();
                 }
             }
         });
