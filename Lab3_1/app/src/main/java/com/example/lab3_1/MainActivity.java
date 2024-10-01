@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.myListView);
         myItemsList = new ArrayList<>(Arrays.asList("Android", "ASP.NET", "Unity", "Java", "C#"));
         // Changed the getApplicationContext() to this
-        customerAdapter = new MyCustomAdapter(this,myItemsList);
+        customerAdapter = new MyCustomAdapter(this, myItemsList);
         listView.setAdapter(customerAdapter);
 
         // Add button
@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 myItemsList.add("Something");
+                String lastAddedItem = myItemsList.get(myItemsList.size() - 1);
+                Toast.makeText(MainActivity.this, "Added " + lastAddedItem, Toast.LENGTH_SHORT).show();
                 // Next time implement the RecycleView (this one automatically update)
                 // We have this because adapter itself doesn't automatically update.
                 customerAdapter.notifyDataSetChanged();
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void createPopUpWindow(int position){
+    private void createPopUpWindow(int position) {
         // getSystemService(LAYOUT_INFLATER_SERVICE) is a method that retrieves a system-level service.
         // LAYOUT_INFLATER_SERVICE is a constant that represents the system's LayoutInflater service.
         LayoutInflater layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -88,13 +90,14 @@ public class MainActivity extends AppCompatActivity {
         boolean focusable = true;
         // This is a widget from android and will implement an animation, as well as adjusting pop in/out animation.
         // We add the parameter we got from inflater, assign popUp class.
-        PopupWindow popupWindow = new PopupWindow(popUp,width,height,focusable);
+        PopupWindow popupWindow = new PopupWindow(popUp, width, height, focusable);
+        popupWindow.setAnimationStyle(R.style.DialogAnimation);
 
         // When the main layout is ready, this will run.
         mainLayout.post(new Runnable() {
             @Override
             public void run() {
-                popupWindow.showAtLocation(mainLayout, Gravity.CENTER,0,0);
+                popupWindow.showAtLocation(mainLayout, Gravity.CENTER, 0, 0);
             }
         });
 
@@ -111,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String newTitle = updateTitleInput.getText().toString();
-                if (!newTitle.isEmpty()){
+                if (!newTitle.isEmpty()) {
                     myItemsList.set(position, newTitle);
                     customerAdapter.notifyDataSetChanged();
                     popupWindow.dismiss();
@@ -123,8 +126,12 @@ public class MainActivity extends AppCompatActivity {
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!myItemsList.get(position).isEmpty()){
+
+                String itemToDelete = myItemsList.get(position).toString();
+
+                if (!myItemsList.get(position).isEmpty()) {
                     myItemsList.remove(position);
+                    Toast.makeText(MainActivity.this, "Deleted " + itemToDelete, Toast.LENGTH_SHORT).show();
                     customerAdapter.notifyDataSetChanged();
                     popupWindow.dismiss();
                 } else {
