@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Lab 5_1</string>
+    <string name="username">Username</string>
+    <string name="fullname">Fullname</string>
+    <string name="email">Email</string>
+
+    <string-array name="student_username">
+        <item>Pocket Circuit Champion</item>
+        <item>Freak Bob</item>
+        <item>John Pork</item>
+        <item>Feet Hunter</item>
+        <item>10 Years in the joint</item>
+        <item>Pink Guy</item>
+        <item>Dat boi</item>
+        <item>Gondola</item>
+        <item>All must die</item>
+    </string-array>
+
+    <string-array name="student_fullname">
+        <item>Kiryu Kazuma</item>
+        <item>Sponge Bob</item>
+        <item>John Doe</item>
+        <item>Hideo Kojima</item>
+        <item>Akira Nishikiyama</item>
+        <item>Papa Franku</item>
+        <item>Boi</item>
+        <item>Bicc Boi Gondola</item>
+        <item>Soyboy</item>
+    </string-array>
+
+    <string-array name="student_email">
+        <item>Kiryu@proton.me</item>
+        <item>SaySantaClaus@proton.me</item>
+        <item>John333111@proton.me</item>
+        <item>ThatOneParticularFeetScanner@proton.me</item>
+        <item>AllMyMoneyGone@proton.me</item>
+        <item>PleaseComebackFrank@proton.me</item>
+        <item>HereComeThatBoy@proton.me</item>
+        <item>Gondola@proton.me</item>
+        <item>Soyboy@proton.me</item>
+    </string-array>
+</resources>

@@ -25,9 +25,9 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView username;
 
-        // Constructor to bind view to specific items.
-        // We pass the inflated item (user_username) here, then initialized VH held the data.
-        public MyViewHolder (final View view){
+        // Constructor to bind view to specific items
+        // This one just held the data and will be reused once called.
+        public MyViewHolder (@NonNull View view){
             super(view);
             username = view.findViewById(R.id.user_username);
         }
@@ -35,10 +35,10 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
 
     @NonNull
     @Override
-    // New VH: Inflate view -> Create new ViewHolder
+    // Create VH: Inflate view -> Create new ViewHolder
     public recyclerAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_items, parent, false);
-        return new MyViewHolder(itemView);
+        return new MyViewHolder(itemView); // Create a new VH instance.
     }
 
     @Override

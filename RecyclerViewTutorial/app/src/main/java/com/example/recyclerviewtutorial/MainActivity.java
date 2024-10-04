@@ -31,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
         Log.i("INFO", "Amount of user:" + user_list.size());
     }
 
+
+    // Flow: Set info -> create recyclerAdapter instance -> onCreateViewHolder() -> onBindViewHolder()
+    // Once done recyclerView.setAdapter(adapter) -> List displayed.
+
     private void setAdapter(){
         recyclerAdapter adapter = new recyclerAdapter(user_list);
         // We arrange how the layout goes (vertical, horizontal, etc...) default is vertical.
