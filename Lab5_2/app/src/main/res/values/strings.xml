@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Lab 5_2</string>
+    <string name="title"> Title </string>
+    <string name="fruit_description">Fruit description</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+
+    <string-array name="fruit_title">
+        <item>Apple</item>
+        <item>Banana</item>
+        <item>C4</item>
+    </string-array>
+
+    <string-array name="fruit_description">
+        <item>The apple is one of the pome (fleshy) fruits. Apples at harvest vary widely in size, shape, colour, and acidity, but most are fairly round and some shade of red or yellow. The thousands of varieties fall into three broad classes: cider, cooking, and dessert varieties.</item>
+        <item>Bananas are long, curved fruits with smooth, yellow, and sometimes slightly green skin. The average length of a banana is about 7 to 9 inches, and it is about 2 to 3 inches in diameter. The skin of the banana is usually yellow when it is ripe, but it can also be green, red, or purple depending on the variety.</item>
+        <item>C-4 or Composition C-4 is a common variety of the plastic explosive family known as Composition C, which uses RDX as its explosive agent. C-4 is composed of explosives, plastic binder, plasticizer to make it malleable, and usually a marker or odorizing taggant chemical. C-4 has a texture similar to modelling clay and can be molded into any desired shape. C-4 is relatively insensitive and can be detonated only by the shock wave from a detonator or blasting cap. </item>
+    </string-array>
+</resources>
