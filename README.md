@@ -8,7 +8,8 @@ Lab 3 - ListView, Adapter, The one with picture is lab 3.
 Note: Renamed lab 3_2 to lab 3.
 
 Lab 4 - Intent
-Note: Lab 2_2 already demonstrated this.
+Note: 
++ Lab 2_2 already demonstrated this.
 
 Lab 5 - Recycler View
 Note for Lab 5_2: 
