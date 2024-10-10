@@ -2,9 +2,11 @@ package com.example.lab5_2;
 
 import android.content.Context;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,8 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class FruitRecyclerAdapater extends RecyclerView.Adapter<FruitRecyclerAdapater.MyViewHolder> {
-    private final RecyclerViewInterface recyclerViewInterface;
 
+    private final RecyclerViewInterface recyclerViewInterface;
     Context context;
     private ArrayList<Fruit> fruitList;
 
@@ -37,15 +39,12 @@ public class FruitRecyclerAdapater extends RecyclerView.Adapter<FruitRecyclerAda
             fruitDesciption = itemView.findViewById(R.id.fruitDescription);
             fruitImages = itemView.findViewById(R.id.fruitImage);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (recyclerViewInterface != null){
-                        int position = getAdapterPosition();
+            itemView.setOnClickListener(view -> {
+                if (recyclerViewInterface != null){
+                    int position = getAdapterPosition();
 
-                        if (position != RecyclerView.NO_POSITION){
-                            recyclerViewInterface.onItemClick(position);
-                        }
+                    if (position != RecyclerView.NO_POSITION){
+                        recyclerViewInterface.onItemClick(position);
                     }
                 }
             });
@@ -71,4 +70,5 @@ public class FruitRecyclerAdapater extends RecyclerView.Adapter<FruitRecyclerAda
     public int getItemCount() {
         return fruitList.size();
     }
+
 }

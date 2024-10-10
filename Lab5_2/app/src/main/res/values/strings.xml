@@ -4,6 +4,8 @@
     <string name="fruit_description">Fruit description</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
 
     <string-array name="fruit_title">
         <item>Apple</item>
