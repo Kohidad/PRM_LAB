@@ -1,18 +1,14 @@
 package com.example.lab5_2;
 
 import android.content.Context;
-import android.text.Layout;
-import android.util.Log;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 
 public class FruitRecyclerAdapater extends RecyclerView.Adapter<FruitRecyclerAdapater.MyViewHolder> {
@@ -20,6 +16,7 @@ public class FruitRecyclerAdapater extends RecyclerView.Adapter<FruitRecyclerAda
     private final RecyclerViewInterface recyclerViewInterface;
     Context context;
     private ArrayList<Fruit> fruitList;
+    private String imageUri;
 
     public FruitRecyclerAdapater(Context context, ArrayList<Fruit> fruitList, RecyclerViewInterface recyclerViewInterface) {
         this.context = context;
@@ -63,7 +60,9 @@ public class FruitRecyclerAdapater extends RecyclerView.Adapter<FruitRecyclerAda
     public void onBindViewHolder(@NonNull FruitRecyclerAdapater.MyViewHolder holder, int position) {
         holder.fruitTitle.setText(fruitList.get(position).getTitle());
         holder.fruitDesciption.setText(fruitList.get(position).getDescription());
-        holder.fruitImages.setImageResource(fruitList.get(position).getImage());
+
+        imageUri = fruitList.get(position).getImage();
+        holder.fruitImages.setImageURI(Uri.parse(imageUri));
     }
 
     @Override

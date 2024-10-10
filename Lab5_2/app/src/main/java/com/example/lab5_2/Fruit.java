@@ -3,9 +3,9 @@ package com.example.lab5_2;
 public class Fruit {
     private String title;
     private String description;
-    private int image;
+    private String image;
 
-    public Fruit(String title, String description, int image) {
+    public Fruit(String title, String description, String image) {
         this.title = title;
         this.description = description;
         this.image = image;
@@ -27,11 +27,11 @@ public class Fruit {
         this.description = description;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

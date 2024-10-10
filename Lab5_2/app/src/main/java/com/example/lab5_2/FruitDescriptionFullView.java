@@ -2,6 +2,7 @@ package com.example.lab5_2;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ViewGroup;
@@ -25,7 +26,7 @@ public class FruitDescriptionFullView extends AppCompatActivity{
     Button btnDialogClose, btnDialogConfirm;
     String title;
     String description;
-    int image;
+    String imageUri;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class FruitDescriptionFullView extends AppCompatActivity{
 
         title = getIntent().getStringExtra("TITLE");
         description = getIntent().getStringExtra("DESCRIPTION");
-        image = getIntent().getIntExtra("IMAGE", 0);
+        imageUri = getIntent().getStringExtra("IMAGEURI");
 
         TextView titleTV = findViewById(R.id.fruitFullDescription_title);
         TextView descriptionTV = findViewById(R.id.fruitFullDescription_description);
@@ -49,7 +50,7 @@ public class FruitDescriptionFullView extends AppCompatActivity{
 
         titleTV.setText(title);
         descriptionTV.setText(description);
-        imageIV.setImageResource(image);
+        imageIV.setImageURI(Uri.parse(imageUri));
 
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.custom_dialog_box);

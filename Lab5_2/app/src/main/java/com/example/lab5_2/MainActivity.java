@@ -2,6 +2,10 @@ package com.example.lab5_2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,14 +21,32 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     private ArrayList<Fruit> fruitList;
     private RecyclerView recyclerView;
     FruitRecyclerAdapater adapter;
+    Button addBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         recyclerView = findViewById(R.id.fruitRecyclerView);
+        addBtn = findViewById(R.id.addBtn);
+
         fruitList = myApplication.getFruitList();
         setUpAdapter();
+
+        addBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(this, AddFruit.class);
+            startActivity(intent);
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (getIntent().getBooleanExtra("NEW_FRUIT_ADDED", false)) {
+            Toast.makeText(this, "New fruit just got added", Toast.LENGTH_SHORT).show();
+            adapter.notifyDataSetChanged();
+        }
     }
 
     private void setUpAdapter() {
@@ -38,10 +60,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     // It's recommended to use Parcelable for this one.
     @Override
     public void onItemClick(int position) {
-        Intent intent = new Intent(MainActivity.this, FruitDescriptionFullView.class);
+        Intent intent = new Intent(this, FruitDescriptionFullView.class);
         intent.putExtra("TITLE", fruitList.get(position).getTitle());
         intent.putExtra("DESCRIPTION", fruitList.get(position).getDescription());
-        intent.putExtra("IMAGE", fruitList.get(position).getImage());
+        intent.putExtra("IMAGEURI", fruitList.get(position).getImage());
         intent.putExtra("POSITION", position);
         startActivity(intent);
     }
