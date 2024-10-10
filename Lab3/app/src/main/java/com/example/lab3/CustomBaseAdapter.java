@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-// A list view utilize what's called a Adapter, adapter is the bridge listView and data source.
+// A list view utilize what's called a Adapter, adapter is the bridge listView (actually anything that's list view based) and data source.
 // ListView data (View) is implemented by Adapter
 public class CustomBaseAdapter extends BaseAdapter {
 
