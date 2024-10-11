@@ -4,12 +4,12 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textThemCongViec"
+        android:id="@+id/textSuaCongViec"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
-        android:text="Thêm Công Việc"
+        android:text="Sửa Công Việc"
         android:textColor="#F44336"
         android:textSize="30dp"
         android:textStyle="bold" />
@@ -18,7 +18,7 @@
         android:id="@+id/editTextTenCV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textThemCongViec"
+        android:layout_below="@+id/textSuaCongViec"
         android:layout_marginTop="10dp"/>
 
     <Button
@@ -33,12 +33,12 @@
         android:text="Hủy" />
 
     <Button
-        android:id="@+id/buttonThem"
+        android:id="@+id/buttonXacNhan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editTextTenCV"
         android:layout_alignParentStart="true"
         android:layout_marginStart="55dp"
         android:layout_marginTop="10dp"
-        android:text="Thêm" />
+        android:text="Xác nhận" />
 </RelativeLayout>

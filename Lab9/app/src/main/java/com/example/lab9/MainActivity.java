@@ -3,8 +3,12 @@ package com.example.lab9;
 import android.app.Dialog;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -41,7 +45,42 @@ public class MainActivity extends AppCompatActivity {
     private void DialogThem(){
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_them_cong_viec);
+
+        EditText editTen = dialog.findViewById(R.id.editTextTenCV);
+        Button btnThem = dialog.findViewById(R.id.buttonThem);
+        Button btnHuy = dialog.findViewById(R.id.buttonHuy);
+
+        btnThem.setOnClickListener(view -> {
+            String tenCV = editTen.getText().toString();
+            Toast.makeText(this, "tenCV: " + tenCV, Toast.LENGTH_SHORT).show();
+            if (tenCV.isEmpty()){
+                Toast.makeText(this, "Vui lòng nhập tên công việc", Toast.LENGTH_SHORT).show();
+            } else {
+                database.queryData("Insert into CongViec values(null, '" + tenCV + "')");
+                Toast.makeText(this, "Đã thêm " + tenCV, Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+                GetDataCongViec();
+            }
+        });
+
+        btnHuy.setOnClickListener(view -> {
+            dialog.dismiss();
+        });
+
         dialog.show();
+    }
+
+    private void GetDataCongViec() {
+        Cursor dataCongViec = database.getData("Select * from CongViec");
+        arrayCongViec.clear();
+
+        while (dataCongViec.moveToNext()){
+            String ten = dataCongViec.getString(1);
+//            Toast.makeText(this, ten, Toast.LENGTH_SHORT).show();
+            int id = dataCongViec.getInt(0);
+            arrayCongViec.add(new CongViec(id,ten));
+        }
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -63,13 +102,6 @@ public class MainActivity extends AppCompatActivity {
 //        database.queryData("Insert into CongViec values(null, 'Project Android')");
 //        database.queryData("Insert into CongViec values(null, 'Design app')");
 
-        Cursor dataCongViec = database.getData("Select * from CongViec");
-        while (dataCongViec.moveToNext()){
-            String ten = dataCongViec.getString(1);
-//            Toast.makeText(this, ten, Toast.LENGTH_SHORT).show();
-            int id = dataCongViec.getInt(0);
-            arrayCongViec.add(new CongViec(id,ten));
-        }
-        adapter.notifyDataSetChanged();
+        GetDataCongViec();
     }
 }
