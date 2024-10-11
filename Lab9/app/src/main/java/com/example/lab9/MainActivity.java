@@ -83,6 +83,31 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    public void DialogSuaCongViec(String ten, int id){
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_sua_cong_viec);
+
+        EditText editTenCV = dialog.findViewById(R.id.editTextTenCV);
+        Button btnXacNhan = dialog.findViewById(R.id.buttonXacNhan);
+        Button btnHuy = dialog.findViewById(R.id.buttonHuy);
+
+        editTenCV.setText(ten);
+        btnXacNhan.setOnClickListener(view -> {
+            String tenMoi = editTenCV.getText().toString().trim();
+            database.queryData("UPDATE CongViec SET TenCV ='" + tenMoi +
+                    "' WHERE id = '" + id + "'");
+            Toast.makeText(this, "Đã cập nhât: " + ten + " thành " + tenMoi, Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+            GetDataCongViec();
+        });
+
+        btnHuy.setOnClickListener(view -> {
+            dialog.dismiss();
+        });
+
+        dialog.show();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

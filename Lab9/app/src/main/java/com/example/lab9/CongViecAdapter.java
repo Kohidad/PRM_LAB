@@ -12,11 +12,11 @@ import java.util.List;
 
 public class CongViecAdapter extends BaseAdapter {
 
-    private Context context;
+    private MainActivity context;
     private int layout;
     private List<CongViec> congViecList;
 
-    public CongViecAdapter(Context context, int layout, List<CongViec> congViecList) {
+    public CongViecAdapter(MainActivity context, int layout, List<CongViec> congViecList) {
         this.context = context;
         this.layout = layout;
         this.congViecList = congViecList;
@@ -37,7 +37,7 @@ public class CongViecAdapter extends BaseAdapter {
         return 0;
     }
 
-    private class ViewHolder{
+    private class ViewHolder {
         TextView txtTen;
         ImageView imgDelete, imgEdit;
     }
@@ -45,7 +45,7 @@ public class CongViecAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder holder;
-        if (view == null){
+        if (view == null) {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(layout, null);
@@ -59,6 +59,13 @@ public class CongViecAdapter extends BaseAdapter {
 
         CongViec congViec = congViecList.get(i);
         holder.txtTen.setText(congViec.getTenCV());
+
+        // Update event
+        // Everything that happens in adapter, stays in adapter.
+        holder.imgEdit.setOnClickListener(v -> {
+            context.DialogSuaCongViec(congViec.getTenCV(), congViec.getIdCV());
+        });
+
         return view;
     }
 
