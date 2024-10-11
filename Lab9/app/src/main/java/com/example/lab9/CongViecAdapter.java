@@ -66,6 +66,10 @@ public class CongViecAdapter extends BaseAdapter {
             context.DialogSuaCongViec(congViec.getTenCV(), congViec.getIdCV());
         });
 
+        holder.imgDelete.setOnClickListener(v -> {
+            context.DialogXoaCongViec(congViec.getTenCV(), congViec.getIdCV());
+        });
+
         return view;
     }
 

@@ -1,6 +1,8 @@
 package com.example.lab9;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -106,6 +108,23 @@ public class MainActivity extends AppCompatActivity {
         });
 
         dialog.show();
+    }
+
+    public void DialogXoaCongViec(String tenCV,int Id){
+        AlertDialog.Builder dialogXoa = new AlertDialog.Builder(this);
+        dialogXoa.setMessage("Bạn có muốn xóa công việc " + tenCV + " không ? ");
+        dialogXoa.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                database.queryData("DELETE FROM CongViec WHERE Id = '" + Id + "' ");
+                Toast.makeText(MainActivity.this, "Đã xóa", Toast.LENGTH_SHORT).show();
+                GetDataCongViec();
+            }
+        });
+        dialogXoa.setNegativeButton("No", (dialogInterface, i) -> {
+
+        });
+        dialogXoa.show();
     }
 
     @Override
