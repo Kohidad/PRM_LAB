@@ -2,6 +2,7 @@ package com.example.lab9;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,6 +20,12 @@ public class MainActivity extends AppCompatActivity {
     ListView lvCongViec;
     ArrayList<CongViec> arrayCongViec;
     CongViecAdapter adapter;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.add_congviec, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
