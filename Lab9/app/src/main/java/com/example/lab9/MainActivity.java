@@ -1,12 +1,15 @@
 package com.example.lab9;
 
+import android.app.Dialog;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -25,6 +28,20 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.add_congviec, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menuAdd){
+            DialogThem();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void DialogThem(){
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_them_cong_viec);
+        dialog.show();
     }
 
     @Override
