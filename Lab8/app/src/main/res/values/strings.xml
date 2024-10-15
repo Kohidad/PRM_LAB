@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Lab 8</string>
+    <string name="channel_name">lab8\n</string>
+    <string name="channel_description">Learning about notification for android development</string>
+</resources>
