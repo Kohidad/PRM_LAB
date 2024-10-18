@@ -3,9 +3,12 @@ package com.example.feedbackmanagementsystem;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,6 +50,42 @@ public class TraineeOverview extends AppCompatActivity {
 
         traineeService = TraineeRepository.getTraineeService();
         getAllTrainees();
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                Trainee trainee = traineeAdapter.getTraineeAtPosition(position);
+                if (position > -1){
+                    deleteTrainee((int) trainee.getId());
+                }
+            }
+        }).attachToRecyclerView(traineeRecyclerView);
+    }
+
+    private void deleteTrainee(int traineeId) {
+        Call<Trainee> call = traineeService.deleteTraineese(traineeId);
+        call.enqueue(new Callback<Trainee>() {
+            @Override
+            public void onResponse(Call<Trainee> call, Response<Trainee> response) {
+                if (response.body() == null) {
+                    return;
+                }
+                if (response.isSuccessful()){
+                    traineeAdapter.removeTraineeAtId(traineeId);
+                    Toast.makeText(TraineeOverview.this, "Delete Successful", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<Trainee> call, Throwable throwable) {
+                Toast.makeText(TraineeOverview.this, "Delete Failure", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void getAllTrainees() {

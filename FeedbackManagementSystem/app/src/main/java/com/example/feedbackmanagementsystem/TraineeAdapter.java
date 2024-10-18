@@ -52,6 +52,20 @@ public class TraineeAdapter extends RecyclerView.Adapter<TraineeAdapter.MyViewHo
         notifyDataSetChanged(); // Notify the adapter of the data change
     }
 
+    public Trainee getTraineeAtPosition(int position){
+        return traineeList.get(position);
+    }
+
+    public void removeTraineeAtId(int targetTraineeId) {
+        for (int i = 0; i < traineeList.size(); i++) {
+            if (traineeList.get(i).getId() == targetTraineeId) {
+                traineeList.remove(i);
+                notifyItemRemoved(i);
+                break;
+            }
+        }
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView name, email;
