@@ -10,7 +10,7 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
-public interface API {
+public interface TraineeService {
     String TRAINEES = "Nhanvien";
 
     @GET(TRAINEES)

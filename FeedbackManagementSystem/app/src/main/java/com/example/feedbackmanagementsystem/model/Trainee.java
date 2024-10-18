@@ -7,6 +7,13 @@ public class Trainee {
     private String phone;
     private String gender;
 
+    public Trainee(String email, String name, String phone, String gender) {
+        this.email = email;
+        this.name = name;
+        this.phone = phone;
+        this.gender = gender;
+    }
+
     public long getId() {
         return id;
     }
