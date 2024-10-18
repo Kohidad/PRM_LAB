@@ -1,7 +1,5 @@
 # PRM_LAB
 
-![Neco handing you weed](https://github.com/user-attachments/assets/d5e1cccb-5d21-40a9-96b2-fa423b0d13e5)
-
 Lab 1 - Linear and Constraint layout
 
 Lab 2 - Activity controls, funny random number generator, basic sign up & login in(2-2)
