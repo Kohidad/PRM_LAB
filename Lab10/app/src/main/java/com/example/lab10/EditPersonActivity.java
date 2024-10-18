@@ -38,6 +38,7 @@ public class EditPersonActivity extends AppCompatActivity {
 
             mPersonId = intent.getIntExtra(Constants.UPDATE_Person_Id, -1);
 
+            // Every reading/writing from database (any disk operations) go through DiskIO
             AppExecutors.getInstance().diskIO().execute(new Runnable() {
                 @Override
                 public void run() {
@@ -71,6 +72,7 @@ public class EditPersonActivity extends AppCompatActivity {
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
+                // Not update -> Insert
                 if (!intent.hasExtra(Constants.UPDATE_Person_Id)){
                     mDb.personDAO().insert(person);
                 } else {

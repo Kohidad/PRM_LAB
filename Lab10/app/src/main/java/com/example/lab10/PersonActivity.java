@@ -41,6 +41,7 @@ public class PersonActivity extends AppCompatActivity {
 
         mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "app-database").build();
 
+        // Swipe
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
 
             @Override
@@ -70,11 +71,13 @@ public class PersonActivity extends AppCompatActivity {
         retrieveTasks();
     }
 
+    // Refresh data
     private void retrieveTasks() {
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
                 final List<Person> personList = mDb.personDAO().getAll();
+                // Once data is fetched, update the adapter with new list.
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

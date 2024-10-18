@@ -12,9 +12,9 @@ public class AppExecutors {
 
     private static final Object LOCK = new Object();
     private static AppExecutors sInstance;
-    private final Executor diskIO;
-    private final Executor mainthread;
-    private final Executor networkIO;
+    private final Executor diskIO; // Executor for database access (from disk)
+    private final Executor mainthread; // Executor for thread management
+    private final Executor networkIO; // Executor for network operation
 
     public AppExecutors(Executor diskIO, Executor mainthread, Executor networkIO) {
         this.diskIO = diskIO;
@@ -24,6 +24,7 @@ public class AppExecutors {
 
     public static AppExecutors getInstance(){
         if (sInstance == null){
+            // Locking: when a thread acquires a lock on the resource, no other threads can access it.
             synchronized (LOCK) {
                 sInstance = new AppExecutors(Executors.newSingleThreadExecutor(),
                         Executors.newFixedThreadPool(3), new MainThreadExecutor());
@@ -44,6 +45,7 @@ public class AppExecutors {
         return networkIO;
     }
 
+    // Every tasks run through Handler.
     private static class MainThreadExecutor implements Executor {
         private Handler mainThreadHandler = new Handler(Looper.getMainLooper());
 
