@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         @SuppressWarnings("deprecation")
         Notification notification = new Notification.Builder(this, "lab_8")
                 .setContentTitle("This is a notification")
-                .setContentText("You can now read this notificationitgit text")
+                .setContentText("You can now read this notification text")
                 .setSmallIcon(R.drawable.ic_notification_bell_1)
                 .setColor(getResources().getColor(R.color.killer_red))
 //                .setLargeIcon(bitmap)
