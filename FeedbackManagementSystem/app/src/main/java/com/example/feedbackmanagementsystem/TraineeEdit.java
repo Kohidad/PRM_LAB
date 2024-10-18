@@ -1,5 +1,6 @@
 package com.example.feedbackmanagementsystem;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -7,12 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.example.feedbackmanagementsystem.Constants.Constants;
 import com.example.feedbackmanagementsystem.api.TraineeRepository;
 import com.example.feedbackmanagementsystem.api.TraineeService;
 import com.example.feedbackmanagementsystem.model.Trainee;
@@ -21,25 +19,44 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class TraineeEdit extends AppCompatActivity implements View.OnClickListener {
 
-    TraineeService traineeService;
-    EditText etName, etEmail, etPhone, etGender;
-    Button btnSave;
+    private TraineeService traineeService;
+    private int traineeId;
+    private EditText etName, etEmail, etPhone, etGender;
+    private Button btnSave,btnOverview;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.trainee_edit);
+
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         etName = findViewById(R.id.etTraineeName);
         etEmail = findViewById(R.id.etTraineeEmail);
         etPhone = findViewById(R.id.etTraineePhoneNumber);
         etGender = findViewById(R.id.etTraineeGender);
         btnSave = findViewById(R.id.btnSave);
+        btnOverview = findViewById(R.id.btnOverview);
+
         btnSave.setOnClickListener(this);
+        btnOverview.setOnClickListener(view -> {
+            Intent intent = new Intent(this,TraineeOverview.class);
+            startActivity(intent);
+        });
 
         traineeService = TraineeRepository.getTraineeService();
+
+        intent = getIntent();
+        if (intent != null && intent.hasExtra(Constants.UPDATE_Trainee_Id)){
+            btnSave.setText("Update Data");
+            traineeId = (int) intent.getIntExtra(Constants.UPDATE_Trainee_Id, -1);
+            if (traineeId != -1){
+                // In progress.
+            }
+        }
     }
 
     private void save() {
@@ -55,13 +72,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onResponse(Call<Trainee> call, Response<Trainee> response) {
                     if (response.body() != null){
-                        Toast.makeText(MainActivity.this, "Save successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TraineeEdit.this, "Save successfully", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Trainee> call, Throwable throwable) {
-                    Toast.makeText(MainActivity.this, "Failure occurred", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TraineeEdit.this, "Failure occurred", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e){
