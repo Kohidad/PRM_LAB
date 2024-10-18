@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
         android:text="Trainee Information"
-        android:textColor="#374CC0"
+        android:textColor="#4CAF50"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,4 +80,17 @@
         app:layout_constraintEnd_toEndOf="@+id/etTraineeGender"
         app:layout_constraintStart_toStartOf="@+id/etTraineeGender"
         app:layout_constraintTop_toBottomOf="@+id/etTraineeGender" />
+
+    <Button
+        android:id="@+id/btnOverview"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/semi_rounded_button"
+        android:backgroundTint="#8BC34A"
+        android:text="Overview Data"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/btnSave"
+        app:layout_constraintStart_toStartOf="@+id/btnSave"
+        app:layout_constraintTop_toBottomOf="@+id/btnSave" />
 </androidx.constraintlayout.widget.ConstraintLayout>
