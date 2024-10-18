@@ -49,7 +49,7 @@ public class TraineeAdapter extends RecyclerView.Adapter<TraineeAdapter.MyViewHo
         this.traineeList.clear();
         this.traineeList.addAll(traineeList);
         Log.i("ADAPTER_UPDATE", "Number of trainees: " + traineeList.size());
-        notifyDataSetChanged(); // Notify the adapter of the data change
+        notifyDataSetChanged();
     }
 
     public Trainee getTraineeAtPosition(int position){
