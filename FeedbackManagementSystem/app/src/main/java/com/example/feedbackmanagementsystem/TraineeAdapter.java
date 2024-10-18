@@ -36,7 +36,6 @@ public class TraineeAdapter extends RecyclerView.Adapter<TraineeAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull TraineeAdapter.MyViewHolder holder, int position) {
-        Log.i("BINDING_VIEW", "Binding trainee at position: " + position);
         holder.name.setText(traineeList.get(position).getName());
         holder.email.setText(traineeList.get(position).getEmail());
     }

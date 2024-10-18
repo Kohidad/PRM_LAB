@@ -45,12 +45,12 @@ public class TraineeOverview extends AppCompatActivity {
         traineeAdapter = new TraineeAdapter(this);
         traineeRecyclerView.setAdapter(traineeAdapter);
 
-
         traineeService = TraineeRepository.getTraineeService();
         getAllTrainees();
     }
 
     private void getAllTrainees() {
+        // Since each trainees data are grouped and stored as each array, we can utilize Arrays.asList
         Call<Trainee[]> call = traineeService.getAllTrainees();
         call.enqueue(new Callback<Trainee[]>() {
             @Override

@@ -7,9 +7,9 @@ public class Trainee {
     private String phone;
     private String gender;
 
-    public Trainee(String email, String name, String phone, String gender) {
-        this.email = email;
+    public Trainee(String name, String email, String phone, String gender) {
         this.name = name;
+        this.email = email;
         this.phone = phone;
         this.gender = gender;
     }

@@ -41,7 +41,12 @@ public class TraineeEdit extends AppCompatActivity implements View.OnClickListen
         btnSave = findViewById(R.id.btnSave);
         btnOverview = findViewById(R.id.btnOverview);
 
-        btnSave.setOnClickListener(this);
+        btnSave.setOnClickListener(view -> {
+            create();
+            Intent intent = new Intent(this,TraineeOverview.class);
+            startActivity(intent);
+        });
+
         btnOverview.setOnClickListener(view -> {
             Intent intent = new Intent(this,TraineeOverview.class);
             startActivity(intent);
@@ -51,15 +56,48 @@ public class TraineeEdit extends AppCompatActivity implements View.OnClickListen
 
         intent = getIntent();
         if (intent != null && intent.hasExtra(Constants.UPDATE_Trainee_Id)){
+            traineeId = intent.getIntExtra(Constants.UPDATE_Trainee_Id, -1);
             btnSave.setText("Update Data");
-            traineeId = (int) intent.getIntExtra(Constants.UPDATE_Trainee_Id, -1);
+            getTraineeInfo(traineeId);
             if (traineeId != -1){
                 // In progress.
+                btnSave.setOnClickListener(view -> {
+                    update(traineeId);
+                    Intent intent = new Intent(this, TraineeOverview.class);
+                    startActivity(intent);
+                });
             }
         }
     }
 
-    private void save() {
+    private void update(int id) {
+        String name = etName.getText().toString();
+        String email = etEmail.getText().toString();
+        String phone = etPhone.getText().toString();
+        String gender = etGender.getText().toString();
+
+        Trainee trainee = new Trainee(name, email, phone, gender);
+
+        try {
+            Call<Trainee> call = traineeService.updateTrainees(id, trainee);
+            call.enqueue(new Callback<Trainee>() {
+                @Override
+                public void onResponse(Call<Trainee> call, Response<Trainee> response) {
+                    Toast.makeText(TraineeEdit.this, "Update Successful", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Call<Trainee> call, Throwable throwable) {
+                    Toast.makeText(TraineeEdit.this, "Update Failure", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e){
+            Log.d("ERROR", e.getMessage());
+        }
+
+    }
+
+    private void create() {
         String name = etName.getText().toString();
         String email = etEmail.getText().toString();
         String phone = etPhone.getText().toString();
@@ -86,8 +124,27 @@ public class TraineeEdit extends AppCompatActivity implements View.OnClickListen
         }
     }
 
+    private void getTraineeInfo(int id){
+        Call<Trainee> call = traineeService.getAllTrainees(id);
+        call.enqueue(new Callback<Trainee>() {
+            @Override
+            public void onResponse(Call<Trainee> call, Response<Trainee> response) {
+                Trainee trainee = response.body();
+                etName.setText(trainee.getName());
+                etEmail.setText(trainee.getEmail());
+                etPhone.setText(trainee.getPhone());
+                etGender.setText(trainee.getGender());
+            }
+
+            @Override
+            public void onFailure(Call<Trainee> call, Throwable throwable) {
+                Toast.makeText(TraineeEdit.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     @Override
     public void onClick(View v) {
-        save();
+        create();
     }
 }
