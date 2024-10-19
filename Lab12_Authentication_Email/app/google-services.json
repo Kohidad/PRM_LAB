@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "585962104504",
+    "project_id": "lab12-email",
+    "storage_bucket": "lab12-email.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585962104504:android:ec93965c69818bf8b9764d",
+        "android_client_info": {
+          "package_name": "com.example.lab12_authentication_email"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYygqtVE40CdEnG7n26L8sSHlpHsrBFug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

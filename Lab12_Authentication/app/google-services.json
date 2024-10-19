@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "749643259782",
+    "project_id": "resortmanagement-3ec9a",
+    "storage_bucket": "resortmanagement-3ec9a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749643259782:android:f69c4392753d65e40dd607",
+        "android_client_info": {
+          "package_name": "com.example.lab12_authentication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkdjumhDOrBQkE5ia9GWdo8iPaq6J8SmU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749643259782:android:4d791251ec9e7e350dd607",
+        "android_client_info": {
+          "package_name": "com.example.lab_12_authentication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkdjumhDOrBQkE5ia9GWdo8iPaq6J8SmU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
