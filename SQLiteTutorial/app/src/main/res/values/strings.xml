@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SQLite Tutorial</string>
+    <string name="add_books">Add Books</string>
+    <string name="book_title">Book title</string>
+    <string name="author_name">Author name</string>
+    <string name="add_button">Add</string>
+    <string name="number_of_pages">Number of pages</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="deleteall">Delete All</string>
+</resources>
