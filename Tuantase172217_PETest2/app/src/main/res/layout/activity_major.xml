@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MajorActivity"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="30dp"
+        android:text="Major name:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/majorNameInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Input major name here"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/major_addBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Add"
+        android:backgroundTint="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/major_updateBtn"
+        app:layout_constraintStart_toStartOf="@+id/majorNameInput"
+        app:layout_constraintTop_toBottomOf="@+id/majorNameInput"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <Button
+        android:id="@+id/major_updateBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="24dp"
+        android:text="Edit"
+        android:backgroundTint="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/major_deleteBtn"
+        app:layout_constraintStart_toEndOf="@+id/major_addBtn"
+        app:layout_constraintTop_toBottomOf="@+id/majorNameInput"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <Button
+        android:id="@+id/major_deleteBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="24dp"
+        android:text="Delete"
+        android:textColor="@color/black"
+        android:backgroundTint="#FF0000"
+        app:layout_constraintEnd_toEndOf="@+id/majorNameInput"
+        app:layout_constraintStart_toEndOf="@+id/major_updateBtn"
+        app:layout_constraintTop_toBottomOf="@+id/majorNameInput"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/major_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/major_updateBtn"
+        tools:listitem="@layout/major_row"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
