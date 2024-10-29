@@ -68,7 +68,9 @@ public class MajorActivity extends AppCompatActivity {
         });
 
 
-//        addExampleData();
+        if (majorDB.readAllMajor().getCount() == 0){
+            addExampleData();
+        }
     }
 
     @Override
@@ -78,11 +80,11 @@ public class MajorActivity extends AppCompatActivity {
     }
 
     // Example data
-//    void addExampleData(){
-//        majorDB.addMajor("Computer Science");
-//        majorDB.addMajor("Electrical Engineering");
-//        majorDB.addMajor("Mechanical Engineering");
-//    }
+    void addExampleData(){
+        majorDB.addMajor("Computer Science");
+        majorDB.addMajor("Electrical Engineering");
+        majorDB.addMajor("Mechanical Engineering");
+    }
 
     public void getAllMajorData(){
         majorList.clear();

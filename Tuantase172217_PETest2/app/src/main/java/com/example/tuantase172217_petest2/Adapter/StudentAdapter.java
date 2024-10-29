@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,8 +27,6 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
     private Activity activity;
     private Context context;
 
-    MajorDB majorDB;
-
     public StudentAdapter(ArrayList<Student> studentList, Activity activity, Context context) {
         this.studentList = studentList;
         this.activity = activity;
@@ -45,27 +43,31 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull StudentAdapter.MyViewHolder holder, int position) {
-        holder.studentID.setText(String.valueOf(studentList.get(position).getID()));
-        holder.student_name.setText(studentList.get(position).getName());
-        holder.date.setText(studentList.get(position).getDate());
-        holder.email.setText(studentList.get(position).getEmail());
-        holder.gender.setText(studentList.get(position).getGender());
-        holder.address.setText(studentList.get(position).getAddress());
+        if (!studentList.isEmpty()) {
+            holder.studentID.setText(String.valueOf(studentList.get(position).getID()));
+            holder.student_name.setText(studentList.get(position).getName());
+            holder.date.setText(studentList.get(position).getDate());
+            holder.email.setText(studentList.get(position).getEmail());
+            holder.gender.setText(studentList.get(position).getGender());
+            holder.address.setText(studentList.get(position).getAddress());
 
-        Major major = getCurrentMajor(studentList.get(position).getIdMajor());
-        holder.majorID.setText(major != null ? major.getNameMajor() : "No Major");
+            Major major = getCurrentMajor(studentList.get(position).getIdMajor());
+            holder.majorID.setText(major != null ? major.getNameMajor() : "No Major");
 
-        holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, UpdateStudentActivity.class);
-            intent.putExtra("STUDENT_ID", studentList.get(position).getID());
-            intent.putExtra("STUDENT_NAME", studentList.get(position).getName());
-            intent.putExtra("DATE", studentList.get(position).getDate());
-            intent.putExtra("EMAIL", studentList.get(position).getEmail());
-            intent.putExtra("GENDER", studentList.get(position).getGender());
-            intent.putExtra("ADDRESS", studentList.get(position).getAddress());
-            intent.putExtra("MAJOR_ID", studentList.get(position).getIdMajor());
-            context.startActivity(intent);
-        });
+            holder.itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(context, UpdateStudentActivity.class);
+                intent.putExtra("STUDENT_ID", studentList.get(position).getID());
+                intent.putExtra("STUDENT_NAME", studentList.get(position).getName());
+                intent.putExtra("DATE", studentList.get(position).getDate());
+                intent.putExtra("EMAIL", studentList.get(position).getEmail());
+                intent.putExtra("GENDER", studentList.get(position).getGender());
+                intent.putExtra("ADDRESS", studentList.get(position).getAddress());
+                intent.putExtra("MAJOR_ID", studentList.get(position).getIdMajor());
+                context.startActivity(intent);
+            });
+        } else {
+            Toast.makeText(activity, "The list is empty!", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

@@ -55,7 +55,9 @@ public class StudentActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-//        addExampleData();
+        if (studentDB.readAllStudent().getCount() == 0) {
+            addExampleData();
+        }
     }
 
     @Override
@@ -66,11 +68,11 @@ public class StudentActivity extends AppCompatActivity {
 
 
     // Example datas
-//    private void addExampleData(){
-//        studentDB.addStudent("David Lee", "05-12-2021", "david.lee@example.com", "Male", "321 Elm St", 1);
-//        studentDB.addStudent("Bob Smith", "15-08-2023", "bobsmith@example.com", "Male", "456 Oak St", 2);
-//        studentDB.addStudent("Alice Johnson", "25-10-2024", "alice@example.com", "Female", "123 Maple St", 1);
-//    }
+    private void addExampleData(){
+        studentDB.addStudent("David Lee", "05-12-2021", "david.lee@example.com", "Male", "321 Elm St", 1);
+        studentDB.addStudent("Bob Smith", "15-08-2023", "bobsmith@example.com", "Male", "456 Oak St", 2);
+        studentDB.addStudent("Alice Johnson", "25-10-2024", "alice@example.com", "Female", "123 Maple St", 1);
+    }
 
     public void getAllStudentData(){
         studentList.clear();
